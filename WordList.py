@@ -1,4 +1,5 @@
-#import json
+import json
+import os
 
 wordlist={}
 word={
@@ -8,20 +9,31 @@ word={
 	"correct":""
 }
 
+active = True
+
 def get_list():
-	pass
+	print("get list")
+	input()
 
 def edit_list():
-	pass
+	print("edit list")
+	input()
 
 def save_data():
-	pass
+	print("save data")
+	input()
 
 def exercise():
-	pass
+	print("exercise")
+	input()
 
-def quit(mode):
-	pass
+def quit():
+	global active
+	active = False
+
+def default():
+	print("No such a selection")
+	input()
 
 def main_menu():
 	print("1.Get List")
@@ -29,5 +41,18 @@ def main_menu():
 	print("3.Save Data")
 	print("4.Exercise")
 	print("5.Quit")
+	choice = input()
+	choice = int(choice)
+	switch={	
+		1:get_list,
+		2:edit_list,
+		3:save_data,
+		4:exercise,
+		5:quit,
+	}
+	os.system("clear")
+	switch.get(choice, default)()
 
-main_menu()
+while active:
+	main_menu()
+	os.system("clear")
