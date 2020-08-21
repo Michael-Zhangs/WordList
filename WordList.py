@@ -63,7 +63,7 @@ def edit_list():
 				"correct: "+str(wordlist[page*set_default+line]["cr"]))
 		for line in range(0,10-line_tmp):
 			print()
-		print("\n\t\t"+"Page: "+str(page))
+		print("\n\t\t"+"Page: "+str(page)+"/"+str(page_all-1))
 		cmd = input()
 		if cmd == "n":
 			if page<page_all-1:
