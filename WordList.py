@@ -1,19 +1,36 @@
 import json
 import os
 
-wordlist={}
-word={
-	"English":"",
-	"Chinese":"",
-	"times":"",
-	"correct":""
-}
 
 active = True
 
 def get_list():
-	print("get list")
-	input()
+	wordlist=[]
+	while True:
+		word={
+			"English":"",
+			"Chinese":"",
+			"times":0,
+			"correct":0,
+		}
+		tmp = input("word:")
+		if tmp == "q":
+			break
+		flag=False
+		for single_word in wordlist:
+			if single_word["English"] == tmp:
+				print("The word has already in the list!")
+				input()
+				flag=True
+				break
+		if flag:
+			continue
+		word["English"]=tmp
+		word["Chinese"]=input("Translation:")
+		wordlist.append(word)
+	with open("wordlist.json", 'w') as f_obj:
+		json.dump(wordlist, f_obj)
+		
 
 def edit_list():
 	print("edit list")
