@@ -1,11 +1,16 @@
 import json
 import os
 
+filename = "wordlist.json"
 
 active = True
 
 def get_list():
-	wordlist=[]
+	try:
+		with open(filename) as f_obj:
+			wordlist = json.load(f_obj)
+	except FileNotFoundError:
+		wordlist = []
 	while True:
 		word={
 			"English":"",
@@ -28,7 +33,7 @@ def get_list():
 		word["English"]=tmp
 		word["Chinese"]=input("Translation:")
 		wordlist.append(word)
-	with open("wordlist.json", 'w') as f_obj:
+	with open(filename, 'w') as f_obj:
 		json.dump(wordlist, f_obj)
 		
 
@@ -71,5 +76,5 @@ def main_menu():
 	switch.get(choice, default)()
 
 while active:
-	main_menu()
 	os.system("clear")
+	main_menu()
