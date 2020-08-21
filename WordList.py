@@ -2,6 +2,7 @@ import json
 import os
 import math
 
+clear = "clear"
 filename = "wordlist.json"
 
 active = True
@@ -50,7 +51,7 @@ def edit_list():
 	set_default = 10
 	page_all = math.ceil(len(wordlist) / set_default)
 	while True:
-		os.system("clear")
+		os.system(clear)
 		if page*set_default+10 > len(wordlist):
 			line_tmp = len(wordlist) - page*set_default
 		else:
@@ -99,9 +100,9 @@ def main_menu():
 		3:exercise,
 		4:quit,
 	}
-	os.system("clear")
+	os.system(clear)
 	switch.get(choice, default)()
 
 while active:
-	os.system("clear")
+	os.system(clear)
 	main_menu()
