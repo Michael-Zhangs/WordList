@@ -71,7 +71,7 @@ def edit_list():
 			del wordlist[d_num]
 			wroted = True
 			
-		if cmd == "n":
+		elif cmd == "n":
 			if page<page_all-1:
 				page=page+1
 		elif cmd == "p":
