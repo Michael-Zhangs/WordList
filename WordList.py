@@ -1,6 +1,7 @@
 import json
 import os
 import math
+import random
 
 clear = "clear"
 filename = "wordlist.json"
@@ -112,8 +113,26 @@ def edit_list():
 
 
 def exercise():
-	print("exercise")
-	input()
+    try:
+        with open(filename) as f_obj:
+            wordlist = json.load(f_obj)
+    except FileNotFoundError:
+        print("File not found!")
+        input()
+        return
+    while True:
+        e_num=random.randint(0,len(wordlist)-1)
+        print(wordlist[e_num]["Tr"])
+        e_tmp = input()
+        if e_tmp == "q":
+            return
+        elif e_tmp == wordlist[e_num]["En"]:
+            print("True")
+            wordlist[e_num]["ti"] = wordlist[e_num]["ti"] + 1
+            wordlist[e_num]["cr"] = wordlist[e_num]["cr"] + 1
+        else:
+            print("False")
+            wordlist[e_num]["ti"] = wordlist[e_num]["ti"] + 1
 
 def quit():
 	global active
