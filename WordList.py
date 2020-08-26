@@ -74,10 +74,10 @@ def edit_list():
 		if cmd == "n":
 			if page<page_all-1:
 				page=page+1
-		if cmd == "l":
+		elif cmd == "p":
 			if page>0:
 				page=page-1
-		if cmd == "w":
+		elif cmd == "w":
 			if wroted == True:
 				print("Write Data to "+filename+"? [Y/n]")
 				w_selection = input()
@@ -85,16 +85,30 @@ def edit_list():
 					with open(filename, "w") as f_obj:
 						json.dump(wordlist, f_obj)
 					wroted = False
-		if cmd == "q!":
+		elif cmd == "q!":
 			return
 
-		if cmd == "q":
+		elif cmd == "q":
 			if wroted == True:
 				print("WordList has been changed but not save!")
 				print('Use "q!" to quit without saving.')
 				input()
 			else:
 				return
+
+		elif cmd == "h":
+			os.system("clear")
+			print("d  : delete")
+			print("n  : next page")
+			print("p  : previous page")
+			print("w  : write file")
+			print("q  : quit")
+			print("q! : force to quit")
+			input()
+		else:
+			print("Command not found")
+			print('Use "h" for help')
+			input()
 
 
 def exercise():
