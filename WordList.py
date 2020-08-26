@@ -40,6 +40,7 @@ def get_list():
 		
 
 def edit_list():
+	wroted = False
 	try:
 		with open(filename) as f_obj:
 			wordlist = json.load(f_obj)
@@ -65,14 +66,35 @@ def edit_list():
 			print()
 		print("\n\t\t"+"Page: "+str(page)+"/"+str(page_all-1))
 		cmd = input()
+		if cmd[:2] == "d ":
+			d_num = int(cmd[2:])
+			del wordlist[d_num]
+			wroted = True
+			
 		if cmd == "n":
 			if page<page_all-1:
 				page=page+1
 		if cmd == "l":
 			if page>0:
 				page=page-1
-		if cmd == "q":
+		if cmd == "w":
+			if wroted == True:
+				print("Write Data to "+filename+"? [Y/n]")
+				w_selection = input()
+				if w_selection.lower() == "y":		
+					with open(filename, "w") as f_obj:
+						json.dump(wordlist, f_obj)
+					wroted = False
+		if cmd == "q!":
 			return
+
+		if cmd == "q":
+			if wroted == True:
+				print("WordList has been changed but not save!")
+				print('Use "q!" to quit without saving.')
+				input()
+			else:
+				return
 
 
 def exercise():
